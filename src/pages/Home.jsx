@@ -20,43 +20,52 @@ export const Home = () => {
 
     const onChangeGeneration = (generation) => {
         setGeneration(generation);
-        console.log("dentro da funcao change:" + generation);
+        getGeneration(generation);
+        console.log("dentro da funcao changeGen:" + generation);
     }
     const getGeneration = (generation) =>
     {
-
         if (generation === 1) {
+            //total de 1 a 151
             startGeneration = 1;
-            endGeneration = 151;
+            endGeneration = 9;
         }
         if (generation === 2) {
+            //total de 152 a 251
             startGeneration = 152;
-            endGeneration = 251;
+            endGeneration = 161;
         }
         if (generation === 3) {
+            //total de 252 a 386
             startGeneration = 252;
-            endGeneration = 386;
+            endGeneration = 261;
         }
         if (generation === 4) {
+            //total de 387 a 493
             startGeneration = 387;
-            endGeneration = 493;
+            endGeneration = 396;
         }
         if (generation === 5) {
+            //total de 494 a 649
             startGeneration = 494;
-            endGeneration = 649;
+            endGeneration = 503;
         }
         if (generation === 6) {
+            //total de 650 a 721
             startGeneration = 650;
-            endGeneration = 721;
+            endGeneration = 659;
         }
         if (generation === 7) {
+            //total de 722 a 809
             startGeneration = 722;
-            endGeneration = 809;
+            endGeneration = 731;
         }
         if (generation === 8) {
+            //total de 810 a 900
             startGeneration = 810;
-            endGeneration = 905;
+            endGeneration = 219;
         }
+        console.log("dentro da funcao getGen:" + generation);
     }
     const getPokemons = async() => {
         getGeneration(generation);
