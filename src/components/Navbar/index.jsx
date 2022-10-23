@@ -7,8 +7,9 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
+import { Button, Grid } from '@mui/material';
+
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -52,9 +53,13 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function Navbar({pokemonFilter}) {
+export default function Navbar({ pokemonFilter, onChangeGeneration }) {
+  function handleClick(generation){
+    onChangeGeneration(generation);
+  }
+
   return (
-    <Box sx={{ flexGrow: 1, marginBottom:2 }}>
+    <Box sx={{ display: 'flex', marginBottom: 2 }}>
       <AppBar position="static" >
         <Toolbar>
           <IconButton
@@ -64,7 +69,6 @@ export default function Navbar({pokemonFilter}) {
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
@@ -74,7 +78,17 @@ export default function Navbar({pokemonFilter}) {
           >
             Pokedex
           </Typography>
-          <Search onChange={(e)=> pokemonFilter(e.target.value)}>
+          <Grid item xl={2} lg={3} md={4} sm={6} xs={12}>
+              <Button size="small" onClick={()=> handleClick(1)} variant="contained">Gen1</Button>
+              <Button size="small" onClick={()=> handleClick(2)} variant="contained">Gen2</Button>
+              <Button size="small" onClick={()=> handleClick(3)} variant="contained">Gen3</Button>
+              <Button size="small" onClick={()=> handleClick(4)} variant="contained">Gen4</Button>
+              <Button size="small" onClick={()=> handleClick(5)} variant="contained">Gen5</Button>
+              <Button size="small" onClick={()=> handleClick(6)} variant="contained">Gen6</Button>
+              <Button size="small" onClick={()=> handleClick(7)} variant="contained">Gen7</Button>
+              <Button size="small" onClick={()=> handleClick(8)} variant="contained">Gen8</Button>
+          </Grid>
+          <Search onChange={(e) => pokemonFilter(e.target.value)}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
