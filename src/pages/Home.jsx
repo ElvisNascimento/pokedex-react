@@ -1,6 +1,6 @@
 import { Container, Grid } from "@mui/material";
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import PokemonCard from "../components/PokemonCard";
 
@@ -23,8 +23,7 @@ export const Home = () => {
         getGeneration(generation);
         getPokemons();
     }
-    const getGeneration = (generation) =>
-    {
+    const getGeneration = (generation) => {
         if (generation === 1) {
             //total de 1 a 151
             startGeneration = 1;
@@ -50,24 +49,24 @@ export const Home = () => {
             startGeneration = 494;
             endGeneration = 649;
         }
-        // if (generation === 6) {
-        //     //total de 650 a 721
-        //     startGeneration = 650;
-        //     endGeneration = 659;
-        // }
-        // if (generation === 7) {
-        //     //total de 722 a 809
-        //     startGeneration = 722;
-        //     endGeneration = 731;
-        // }
-        // if (generation === 8) {
-        //     //total de 810 a 900
-        //     startGeneration = 810;
-        //     endGeneration = 819;
-        // }
-        
+        if (generation === 6) {
+            //total de 650 a 721
+            startGeneration = 650;
+            endGeneration = 659;
+        }
+        if (generation === 7) {
+            //total de 722 a 809
+            startGeneration = 722;
+            endGeneration = 731;
+        }
+        if (generation === 8) {
+            //total de 810 a 900
+            startGeneration = 810;
+            endGeneration = 819;
+        }
+
     }
-    const getPokemons = async() => {
+    const getPokemons = async () => {
         getGeneration(generation);
         let endPoints = [];
         for (let i = startGeneration; i <= endGeneration; i++) {
@@ -91,13 +90,13 @@ export const Home = () => {
     };
     return (
         <>
-            <Navbar pokemonFilter={pokemonFilter} onChangeGenerations={onChangeGenerations}/>
+            <Navbar pokemonFilter={pokemonFilter} onChangeGenerations={onChangeGenerations} />
             <Container maxWidth="false">
                 <Grid container spacing={2}>
                     {pokemons.map((pokemon, key) => (
                         <Grid item xl={2} lg={3} md={4} sm={6} xs={12} key={key}>
-                            <PokemonCard container md={{height:50}} name={pokemon.data.name} image={pokemon['data']['sprites']['versions']['generation-v']['black-white']['animated']['front_default']} types={pokemon.data.types} />
-                            console.log(image.value);
+                            <PokemonCard container md={{ height: 50 }} name={pokemon.data.name}
+                                image={generation <= 5 ? pokemon['data']['sprites']['versions']['generation-v']['black-white']['animated']['front_default'] : pokemon['data']['sprites']['front_default'] } types={pokemon.data.types} />
                         </Grid>
                     ))}
                 </Grid>

@@ -84,9 +84,9 @@ export default function Navbar({ pokemonFilter, onChangeGenerations }) {
               <Button size="small" onClick={()=> handleClick(3)} variant="contained">Gen3</Button>
               <Button size="small" onClick={()=> handleClick(4)} variant="contained">Gen4</Button>
               <Button size="small" onClick={()=> handleClick(5)} variant="contained">Gen5</Button>
-              {/* <Button size="small" onClick={()=> handleClick(6)} variant="contained">Gen6</Button> */}
-              {/* <Button size="small" onClick={()=> handleClick(7)} variant="contained">Gen7</Button> */}
-              {/* <Button size="small" onClick={()=> handleClick(8)} variant="contained">Gen8</Button> */}
+              <Button size="small" onClick={()=> handleClick(6)} variant="contained">Gen6</Button>
+              <Button size="small" onClick={()=> handleClick(7)} variant="contained">Gen7</Button>
+              <Button size="small" onClick={()=> handleClick(8)} variant="contained">Gen8</Button>
           </Grid>
           <Search onChange={(e) => pokemonFilter(e.target.value)}>
             <SearchIconWrapper>

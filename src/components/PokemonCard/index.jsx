@@ -17,7 +17,7 @@ export default function PokemonCard({ name, image, types }) {
     return (
         <Card sx={{ maxWidth: 350 }}>
             <CardActionArea>
-                <CardMedia component="img" height="300" width="auto" image={image} alt={name}
+                <CardMedia component="img" maxHeght="300" width="auto" image={image} alt={name}
                 />
                 <CardContent>
                     <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'}>
@@ -28,10 +28,6 @@ export default function PokemonCard({ name, image, types }) {
                             {typeHendler()}
                         </Typography>
                     </Box>
-                    {/* <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography> */}
                 </CardContent>
             </CardActionArea>
         </Card>
