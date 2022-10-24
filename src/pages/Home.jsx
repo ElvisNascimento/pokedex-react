@@ -5,74 +5,71 @@ import Navbar from "../components/Navbar";
 import PokemonCard from "../components/PokemonCard";
 
 export const Home = () => {
-    let startGeneration = 0;
-    let endGeneration = 0;
+    const [startGen,setStartGen] = useState([]);
+    const [endGen,setEndGen] = useState([]);
     const [pokemons, setPokemons] = useState([]);
     const [generation, setGeneration] = useState(1);
 
-    useEffect(() => {
+    useEffect ( async () => {
         getPokemons()
-        console.log("chamando a funcao pokemons:" + startGeneration, endGeneration);
+        console.log("chamando a funcao pokemons:" + startGen, endGen);
 
-    }, []);
+    }, [startGen,endGen]);
 
     const onChangeGenerations = (generation) => {
-        console.log("chamando a funcao changeGen:" + generation);
         setGeneration(generation);
-        console.log("chamando a funcao getGen:" + generation);
-        getGeneration(generation);
-        getPokemons();
     }
     const getGeneration = (generation) => {
+
         if (generation === 1) {
             //total de 1 a 151
-            startGeneration = 1;
-            endGeneration = 151;
+            setStartGen( 1);
+            setEndGen (151);
         }
         if (generation === 2) {
             //total de 152 a 251
-            startGeneration = 152;
-            endGeneration = 251;
+            setStartGen( 152);
+            setEndGen (251);
         }
         if (generation === 3) {
             //total de 252 a 386
-            startGeneration = 252;
-            endGeneration = 386;
+            setStartGen( 252);
+            setEndGen (386);
         }
         if (generation === 4) {
             //total de 387 a 493
-            startGeneration = 387;
-            endGeneration = 493;
+            setStartGen( 387);
+            setEndGen (493);
         }
         if (generation === 5) {
             //total de 494 a 649
-            startGeneration = 494;
-            endGeneration = 649;
+            setStartGen( 494);
+            setEndGen (649);
         }
         if (generation === 6) {
             //total de 650 a 721
-            startGeneration = 650;
-            endGeneration = 659;
+            setStartGen( 650);
+            setEndGen (659);
         }
         if (generation === 7) {
             //total de 722 a 809
-            startGeneration = 722;
-            endGeneration = 731;
+            setStartGen( 722);
+            setEndGen (731);
         }
         if (generation === 8) {
             //total de 810 a 900
-            startGeneration = 810;
-            endGeneration = 819;
+            setStartGen( 810);
+            setEndGen (819);
         }
 
     }
     const getPokemons = async () => {
         getGeneration(generation);
         let endPoints = [];
-        for (let i = startGeneration; i <= endGeneration; i++) {
+        for (let i = startGen; i <= endGen ; i++) {
             endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         }
-        let response = await axios.all(endPoints.map((endpoint) => axios.get(endpoint)))
+        await axios.all(endPoints.map((endpoint) => axios.get(endpoint)))
             .then((res) => setPokemons(res)).catch((error) => console.log(error));
     };
 
