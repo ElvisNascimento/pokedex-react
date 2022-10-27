@@ -4,6 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Badge, Box, CardActionArea } from '@mui/material';
+import { type } from '@testing-library/user-event/dist/type';
+import { color } from '@mui/system';
 
 
 export default function PokemonCard({ name, image, types }) {
@@ -11,14 +13,16 @@ export default function PokemonCard({ name, image, types }) {
         if (types[1]) {
             return types[0].type.name + " | " + types[1].type.name;
         } else {
-            return <Badge badgeContent={types[0].type.name} color="secondary" />;
+            return types[0].type.name;
         }
+    }
+    if (type.name === "fire") {
+        color = 'red';
     }
     return (
         <Card sx={{ maxWidth: 350 }}>
             <CardActionArea>
-                <CardMedia component='img' height='160' image={image} sx={{objectFit:'contain'}}  alt={name}
-                />
+                <CardMedia component='img' height='160' image={image} sx={{ objectFit: 'contain' }} alt={name} />
                 <CardContent>
                     <Box display={'flex'} justifyContent={'space-around'} alignItems={'center'}>
                         <Typography gutterBottom variant="h4" component="div">

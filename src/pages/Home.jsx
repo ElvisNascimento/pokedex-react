@@ -5,16 +5,14 @@ import Navbar from "../components/Navbar";
 import PokemonCard from "../components/PokemonCard";
 
 export const Home = () => {
-    const [startGen, setStartGen] = useState();
-    const [endGen, setEndGen] = useState();
+    const [startGen, setStartGen] = useState(1);
+    const [endGen, setEndGen] = useState(151);
     const [pokemons, setPokemons] = useState([]);
     const [generation, setGeneration] = useState(1);
 
     const onChangeGenerations = (generation) => {
         setGeneration(generation);
-    }
-    const getPokemons = async () => {
-     if (generation === 1) {
+        if (generation === 1) {
             //total de 1 a 151
             setStartGen(1);
             setEndGen(151);
@@ -52,12 +50,13 @@ export const Home = () => {
         if (generation === 8) {
             //total de 810 a 900
             setStartGen(810);
-            setEndGen(900);
+            setEndGen(898);
         }
-        setGeneration(generation);
+    }
+    const getPokemons = async () => {
+
         let endPoints = [];
         for (let i = startGen; i <= endGen; i++) {
-            console.log(startGen,endGen);
             endPoints.push(`https://pokeapi.co/api/v2/pokemon/${i}`)
         }
         await axios.all(endPoints.map((endpoint) => axios.get(endpoint)))
@@ -78,7 +77,7 @@ export const Home = () => {
     };
     useEffect(() => {
         getPokemons()
-    });
+    }, [generation]);
     return (
         <>
             <Navbar pokemonFilter={pokemonFilter} onChangeGenerations={onChangeGenerations} />
@@ -87,7 +86,8 @@ export const Home = () => {
                     {pokemons.map((pokemon, key) => (
                         <Grid item xl={2} lg={3} md={4} sm={6} xs={12} key={key}>
                             <PokemonCard container md={{ height: 50 }} name={pokemon.data.name}
-                                image={generation <= 5 ? pokemon['data']['sprites']['versions']['generation-v']['black-white']['animated']['front_default'] : pokemon['data']['sprites']['front_default']} types={pokemon.data.types} />
+                                image={generation <= 5 ? pokemon['data']['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
+                                    : pokemon['data']['sprites']['front_default']} types={pokemon.data.types} />
                         </Grid>
                     ))}
                 </Grid>

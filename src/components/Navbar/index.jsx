@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
-import { red } from '@mui/material/colors';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,7 +8,6 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import { Button, Grid } from '@mui/material';
-
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -57,6 +55,7 @@ export default function Navbar({ pokemonFilter, onChangeGenerations }) {
   function handleClick(generation){
     onChangeGenerations(generation);
   }
+  
 
   return (
     <Box sx={{ display: 'flex', marginBottom: 2 }}>
